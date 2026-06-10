@@ -7,12 +7,12 @@ set(CMAKE_AUTOUIC ON)
 
 add_executable(${PROJECT_NAME}
 "main.cpp"
-)
+"model/field.cpp"
+"model/cell.cpp"
+ "model/logic.h" "model/logic.cpp")
 
 # Указываем подключенные директории
 target_include_directories(${PROJECT_NAME} PUBLIC 
 "${CMAKE_SOURCE_DIR}/src"
 )
-
-# Подключаем другие CMakeLists
 

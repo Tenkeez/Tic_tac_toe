@@ -1,6 +1,12 @@
 #include <iostream>
-
+#include <model/field.h>
 int main(int argc, char* argv[])
 {
-	std::cout << "Hallo";
+	Field f;
+
+	if (f.getCell(1, 2).getType() == typeCell::X)
+	{
+		std::cout << "x";
+	}
+
 }
