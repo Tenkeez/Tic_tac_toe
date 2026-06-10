@@ -11,7 +11,6 @@ Field::Field()
 		cells_[i] = cell;
 	}
 
-	cells_[4].setType(typeCell::X);
 }
 
 const Cell& Field::getCell(int r, int c) const

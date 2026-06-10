@@ -3,8 +3,19 @@
 
 #include"field.h"
 
-void checkColumn(const Field& f, typeCell player);
-void checkRow(const Field& f, typeCell player);
+class gameLogic
+{
+public:
+
+
+	typeCell checkWin(const Field& f);
+
+private:
+
+	typeCell checkColumn(const Field& f) const ;
+	typeCell checkRow(const Field& f)  const ;
+	typeCell checkDiagonal(const Field& f) const;
+};
 
 
 

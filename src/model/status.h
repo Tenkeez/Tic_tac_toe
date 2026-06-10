@@ -4,10 +4,11 @@
 #include"field.h"
 
 
-enum class Status { WIN_X, WIN_O, DRAW, TURN_PLAYER_X, TURN_PLAYER_O };
 
 class statusOfGame
 {
+	enum class Status { WIN_X, WIN_O, DRAW, TURN_PLAYER_X, TURN_PLAYER_O };
+
 	statusOfGame();
 
 	const Status& checkStatus() const;

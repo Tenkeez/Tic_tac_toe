@@ -1,5 +1,5 @@
 #include"cell.h"
-
+#include<iostream>
 
 bool Cell::isEmpty() const
 {
@@ -15,4 +15,23 @@ void Cell::setType(typeCell type)
 typeCell Cell::getType() const
 {
 	return type_;
+}
+
+void Cell::printType() const
+{
+	switch (type_)
+	{
+	case typeCell::EMPTY:
+		std::cout << "EMPTY\n";
+		break;
+	case typeCell::X:
+		std::cout << "X\n";
+		break;
+	case typeCell::O:
+		std::cout << "O\n";
+		break;
+	default:
+		break;
+	}
+
 }

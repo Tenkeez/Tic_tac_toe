@@ -9,7 +9,8 @@ add_executable(${PROJECT_NAME}
 "main.cpp"
 "model/field.cpp"
 "model/cell.cpp"
- "model/logic.h" "model/logic.cpp" "model/status.h" "model/status.cpp")
+"model/logic.cpp"
+"model/status.cpp")
 
 # Указываем подключенные директории
 target_include_directories(${PROJECT_NAME} PUBLIC 
