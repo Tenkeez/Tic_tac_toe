@@ -3,34 +3,5 @@
 #include<model/logic.h>
 int main(int argc, char* argv[])
 {
-	Field f;
-
-	gameLogic l;
-	
-
-	f.setCell(0, 0, typeCell::X);
-	f.setCell(0, 1, typeCell::O);
-	f.setCell(0, 2, typeCell::X);
-
-	f.setCell(1, 0, typeCell::X);
-	f.setCell(1, 1, typeCell::O);
-	f.setCell(1, 2, typeCell::O);
-
-	f.setCell(2, 0, typeCell::O);
-	f.setCell(2, 1, typeCell::X);
-	f.setCell(2, 2, typeCell::X);
-
-
-	Cell c;
-	std::cout<<l.isDraw(f)<<std::endl;
-
-	for (size_t i = 0; i < 3; i++)
-	{
-		for (size_t j = 0; j < 3; j++)
-		{
-			std::cout << i << "," << j <<" = ";
-			f.getCell(i, j).printType();
-		}
-	}
 
 }

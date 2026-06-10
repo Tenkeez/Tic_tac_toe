@@ -8,5 +8,4 @@ const statusOfGame::Status& statusOfGame::checkStatus() const
 void statusOfGame::changeStatus(Status status)
 {
 	status_ = status;
-
 }
