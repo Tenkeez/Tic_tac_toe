@@ -20,6 +20,60 @@ typeCell gameLogic::checkWin(const Field& f)
 	return typeCell::EMPTY;
 }
 
+bool gameLogic::isDraw(const Field& f)
+{
+
+	if(checkWin(f) != typeCell::EMPTY)
+		return false;
+
+	for (size_t i = 0; i < 3; i++)
+	{
+		for (size_t j = 0; j < 3; j++)
+		{
+			if (f.getCell(i, j).isEmpty() == true)
+				return false;
+
+		}
+	}
+	return true;
+}
+
+std::vector<std::pair<int,int>> gameLogic::getAvailableMoves(const Field& f)
+{
+	std::vector<std::pair<int,int>> emptyCells;
+
+
+	for (int i = 0; i < 3; i++)
+	{
+		for (int j = 0; j < 3; j++)
+		{
+			Cell c = f.getCell(i, j);
+			if (c.isEmpty() == true)
+			{
+				std::pair<int, int> p(i,j);
+				emptyCells.push_back(p);
+			}
+		}
+	}
+	return emptyCells;
+}
+
+bool gameLogic::isGameOver(const Field& f)
+{
+	if(checkWin(f) == typeCell::EMPTY && isDraw(f) == true)
+		return true;
+	return false;
+}
+
+bool gameLogic::isValidMove(const Field& f, int r, int c)
+{
+	if (r < 0 || r >= 3 || c < 0 || c >= 3)
+		return false;
+	if (f.getCell(r, c).isEmpty() == false)
+		return false;
+	return true;
+}
+
 typeCell gameLogic::checkColumn(const Field& f) const
 {
 
