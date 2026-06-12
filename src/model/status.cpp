@@ -1,6 +1,11 @@
 #include"status.h"
 
 
+statusOfGame::statusOfGame()
+{
+	status_ = Status::TURN_PLAYER_X;
+}
+
 statusOfGame::Status statusOfGame::checkStatus() const
 {
 	return status_;
