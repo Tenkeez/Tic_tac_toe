@@ -35,3 +35,4 @@ void Cell::printType() const
 	}
 
 }
+
