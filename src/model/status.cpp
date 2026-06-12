@@ -1,6 +1,7 @@
 #include"status.h"
 
-const statusOfGame::Status& statusOfGame::checkStatus() const
+
+statusOfGame::Status statusOfGame::checkStatus() const
 {
 	return status_;
 }
