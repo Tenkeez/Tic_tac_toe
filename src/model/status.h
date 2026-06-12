@@ -11,7 +11,7 @@ class statusOfGame
 
 	enum class Status { WIN_X, WIN_O, DRAW, TURN_PLAYER_X, TURN_PLAYER_O };
 
-	const statusOfGame::Status& checkStatus() const;
+	Status checkStatus() const;
 	void changeStatus(Status status);
 
 private:
