@@ -6,6 +6,7 @@
 
 class GameController
 {
+public:
 	GameController(Field& field);
 
 	void click_Processing(int r,int c);

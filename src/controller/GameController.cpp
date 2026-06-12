@@ -9,28 +9,28 @@ GameController::GameController(Field& field):
 
 void GameController::click_Processing(int r, int c)
 {
+	statusOfGame::Status currentStatus = game_status_.checkStatus();
+	if (currentStatus == statusOfGame::Status::WIN_X ||
+		currentStatus == statusOfGame::Status::WIN_O ||
+		currentStatus == statusOfGame::Status::DRAW) {
+		return;
+	}
+
 
 	if (logic_.isValidMove(field_, r, c) == false)
 		return;
-	else
+
+	if (game_status_.checkStatus() == statusOfGame::Status::TURN_PLAYER_X)
 	{
-		switch (game_status_.checkStatus())
-		{
-		case statusOfGame::Status::TURN_PLAYER_X:
-			field_.setCell(r, c,typeCell::X);
-			break;
-		case statusOfGame::Status::TURN_PLAYER_O:
-			field_.setCell(r, c, typeCell::O);
-			break;
-		default:
-			break;
-		}
+		field_.setCell(r, c, typeCell::X);
+	}
+	if (game_status_.checkStatus() == statusOfGame::Status::TURN_PLAYER_O)
+	{
+		field_.setCell(r, c, typeCell::O);
 	}
 	
 	typeCell winner = logic_.checkWin(field_);
-	if (winner == typeCell::EMPTY)
-		return;
-	else if (winner == typeCell::X)
+	if (winner == typeCell::X)
 	{
 		game_status_.changeStatus(statusOfGame::Status::WIN_X);
 		return;
@@ -66,8 +66,12 @@ void GameController::reset()
 statusOfGame::Status GameController::nextTurn(statusOfGame::Status status)
 {
 	if (status == statusOfGame::Status::TURN_PLAYER_X)
-		return statusOfGame::Status::TURN_PLAYER_O;
-	if (status == statusOfGame::Status::TURN_PLAYER_O)
-		return statusOfGame::Status::TURN_PLAYER_X;
+	{
+		status = statusOfGame::Status::TURN_PLAYER_O;
+	}
+	else if (status == statusOfGame::Status::TURN_PLAYER_O)
+	{
+		status = statusOfGame::Status::TURN_PLAYER_X;
+	}
 	return status;
 }
