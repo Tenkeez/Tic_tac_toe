@@ -17,22 +17,4 @@ typeCell Cell::getType() const
 	return type_;
 }
 
-void Cell::printType() const
-{
-	switch (type_)
-	{
-	case typeCell::EMPTY:
-		std::cout << "EMPTY";
-		break;
-	case typeCell::X:
-		std::cout << "X";
-		break;
-	case typeCell::O:
-		std::cout << "O";
-		break;
-	default:
-		break;
-	}
-
-}
 
