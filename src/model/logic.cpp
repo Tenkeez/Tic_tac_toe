@@ -1,5 +1,4 @@
 #include"logic.h"
-#include<iostream>
 
 
 typeCell gameLogic::checkWin(const Field& f)
