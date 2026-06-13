@@ -1,6 +1,6 @@
 #include <iostream>
 #include "controller/gameController.h"
-
+#include<model/simpleAI.h>
 
 void pField(Field& f)
 {
@@ -24,17 +24,19 @@ int main(int argc, char* argv[])
 {
 	Field f;
 	GameController c(f);
+	c.changeGameMode(true);
+
 	pField(f);
 	c.click_Processing(0,0);
 	pField(f);
+	c.makeMoveAI();
+	pField(f);
 	c.click_Processing(2, 0);
 	pField(f);
-	c.click_Processing(1, 1);
-	c.click_Processing(2, 2);
-	c.click_Processing(1, 2);
-	c.click_Processing(2, 1);
+	c.makeMoveAI();
+	pField(f);
+	
 
-	pField(f);
-	c.click_Processing(1,0);
-	pField(f);
+
+	
 }

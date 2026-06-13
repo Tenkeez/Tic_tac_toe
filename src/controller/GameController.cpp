@@ -3,12 +3,16 @@
 GameController::GameController(Field& field):
 	field_(field),
 	logic_(),
-	game_status_()
+	game_status_(),
+	ai_()
 {
+	isVsAI_ = false;
 }
 
 void GameController::click_Processing(int r, int c)
 {
+
+	//если игра окончена
 	statusOfGame::Status currentStatus = game_status_.checkStatus();
 	if (currentStatus == statusOfGame::Status::WIN_X ||
 		currentStatus == statusOfGame::Status::WIN_O ||
@@ -20,11 +24,11 @@ void GameController::click_Processing(int r, int c)
 	if (logic_.isValidMove(field_, r, c) == false)
 		return;
 
-	if (game_status_.checkStatus() == statusOfGame::Status::TURN_PLAYER_X)
+	if (currentStatus == statusOfGame::Status::TURN_PLAYER_X)
 	{
 		field_.setCell(r, c, typeCell::X);
 	}
-	if (game_status_.checkStatus() == statusOfGame::Status::TURN_PLAYER_O)
+	if (currentStatus == statusOfGame::Status::TURN_PLAYER_O)
 	{
 		field_.setCell(r, c, typeCell::O);
 	}
@@ -45,15 +49,19 @@ void GameController::click_Processing(int r, int c)
 		game_status_.changeStatus(statusOfGame::Status::DRAW);
 		return;
 	}
-
-
-	if (logic_.isGameOver(field_))
-	{
-		game_status_.changeStatus(statusOfGame::Status::GAMEOVER);
-		return;
-	}
 		
 	game_status_.changeStatus(nextTurn(game_status_.checkStatus()));
+
+}
+
+void GameController::makeMoveAI()
+{
+	if (!isVsAI_)
+		return;
+
+	int r = ai_.makeMove(logic_.getAvailableMoves(field_)).first;
+	int c = ai_.makeMove(logic_.getAvailableMoves(field_)).second;
+	click_Processing(r, c);
 
 }
 
@@ -61,6 +69,11 @@ void GameController::reset()
 {
 	field_.clear();
 	game_status_.changeStatus(statusOfGame::Status::TURN_PLAYER_X);
+}
+
+void GameController::changeGameMode(bool mode)
+{
+	isVsAI_ = mode;
 }
 
 statusOfGame::Status GameController::nextTurn(statusOfGame::Status status)

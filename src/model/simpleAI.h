@@ -8,7 +8,7 @@ class SimpleAI
 public:
 	SimpleAI() {};
 
-	std::pair<int, int> makeMove(std::vector<std::pair<int, int>> AvailableMoves);
+	std::pair<int, int> makeMove(const std::vector<std::pair<int, int>> &AvailableMoves);
 
 private:
 
