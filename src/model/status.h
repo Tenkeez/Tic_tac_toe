@@ -3,13 +3,12 @@
 
 #include"field.h"
 
-
-
 class statusOfGame
 {
+public:
 	statusOfGame();
 
-	enum class Status { WIN_X, WIN_O, DRAW, TURN_PLAYER_X, TURN_PLAYER_O };
+	enum class Status { WIN_X, WIN_O, DRAW, TURN_PLAYER_X, TURN_PLAYER_O,GAMEOVER };
 
 	Status checkStatus() const;
 	void changeStatus(Status status);

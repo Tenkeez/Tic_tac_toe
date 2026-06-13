@@ -10,7 +10,9 @@ add_executable(${PROJECT_NAME}
 "model/field.cpp"
 "model/cell.cpp"
 "model/logic.cpp"
-"model/status.cpp")
+"model/status.cpp"
+"controller/gameController.cpp"
+"model/simpleAI.cpp")
 
 # Указываем подключенные директории
 target_include_directories(${PROJECT_NAME} PUBLIC 

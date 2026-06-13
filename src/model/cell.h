@@ -8,6 +8,7 @@ struct Cell
 	bool isEmpty() const;
 	void setType(typeCell type);
 	typeCell getType() const;
+	void printType() const;
 
 private:
 	typeCell type_ = typeCell::EMPTY;
