@@ -1,5 +1,5 @@
 # Ищем Qt 
-#find_package(Qt6 REQUIRED COMPONENTS Core Widgets)
+find_package(Qt6 REQUIRED COMPONENTS Core Widgets)
 
 set(CMAKE_AUTOMOC ON)
 set(CMAKE_AUTORCC ON)
@@ -12,10 +12,16 @@ add_executable(${PROJECT_NAME}
 "model/logic.cpp"
 "model/status.cpp"
 "controller/gameController.cpp"
-"model/simpleAI.cpp")
+"model/simpleAI.cpp" 
+"view/gameField.cpp")
 
 # Указываем подключенные директории
 target_include_directories(${PROJECT_NAME} PUBLIC 
 "${CMAKE_SOURCE_DIR}/src"
 )
 
+target_link_libraries(${PROJECT_NAME} PUBLIC
+		Qt6::Core
+		Qt6::Widgets
+		Qt6::Gui
+)
