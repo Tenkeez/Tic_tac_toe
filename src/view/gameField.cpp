@@ -27,6 +27,7 @@ void GameField::drawX(QPainter& painter, int row, int col,int CellW,int CellH)
 	const int offset = qMin(CellW, CellH) / 4; 
 
 	QPen pen(Qt::red, 10);
+	pen.setCapStyle(Qt::RoundCap);
 	painter.setPen(pen);
 
 	// Диагональ 1
@@ -43,6 +44,7 @@ void GameField::drawO(QPainter& painter, int row, int col, int CellW, int CellH)
 	QPen pen;
 	pen.setColor(Qt::blue);
 	pen.setWidth(10);
+	pen.setCapStyle(Qt::RoundCap);
 	painter.setPen(pen);
 
 	QRectF r(col * CellW, row * CellH, CellW, CellH);
@@ -66,9 +68,6 @@ void GameField::paintEvent(QPaintEvent* event)
 	p.fillRect(0, 0, W, H, QColor(255, 255, 255, 255));
 	QPen pen;
 
-	pen.setColor(Qt::black);
-
-	p.setPen(pen);
 
 	for (int i = 0; i < 3; i++)
 	{
@@ -81,20 +80,20 @@ void GameField::paintEvent(QPaintEvent* event)
 
 }
 
-void GameField::mouseMoveEvent(QMouseEvent* event)
-{
-	QPoint curentPoint = event->pos();
-
-	qDebug() << curentPoint;
-}
 
 void GameField::mousePressEvent(QMouseEvent* event)
 {
-	
+	const int W = width(), H = height();
+	const int CellW = W / 3, CellH = H / 3;
 
-	if (event->button() == Qt::LeftButton)
-	{
-		
-	}
+	QPoint curentPoint = event->pos();
+
+	int col = curentPoint.x() / CellW;
+	int row = curentPoint.y() / CellH;
+
+
+	qDebug() << "row " << row << " , column " << col;
+
+	emit cellCliked(row, col);
 }
 

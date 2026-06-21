@@ -19,8 +19,10 @@ public:
 
 protected:
 	void paintEvent(QPaintEvent* event) override;
-	void mouseMoveEvent(QMouseEvent* event) override;
 	void mousePressEvent(QMouseEvent* event) override;
+
+signals:
+	void cellCliked(int row, int coll);
 };
 
 
