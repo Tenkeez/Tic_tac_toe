@@ -5,6 +5,8 @@ bool Cell::isEmpty() const
 {
 	if (type_ == typeCell::EMPTY)
 		return true;
+	else
+		return false;
 }
 
 void Cell::setType(typeCell type)
