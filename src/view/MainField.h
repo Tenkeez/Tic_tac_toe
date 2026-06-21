@@ -20,6 +20,8 @@ public:
 
 private slots:
 	void onCellClicked(int row, int col);
+	void resetGame();
+	void changeModeGame();
 };
 
 #endif

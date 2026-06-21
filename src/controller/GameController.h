@@ -15,6 +15,8 @@ public:
 	void reset();
 	void changeGameMode(bool mode);
 
+	bool checkGameMode();
+
 private:
 	Field& field_;
 
