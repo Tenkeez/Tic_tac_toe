@@ -46,9 +46,9 @@ void GameField::drawO(QPainter& painter, int row, int col, int CellW, int CellH)
 	pen.setWidth(10);
 	pen.setCapStyle(Qt::RoundCap);
 	painter.setPen(pen);
-
+	const int offset = qMin(CellW, CellH) / 4;
 	QRectF r(col * CellW, row * CellH, CellW, CellH);
-	painter.drawEllipse(r.center(),CellW/3,CellH/3);
+	painter.drawEllipse(r.center(),offset,offset);
 
 }
 
@@ -56,7 +56,6 @@ GameField::GameField(const Field& field, QWidget* parent):
 	field_(field),
 	QWidget(parent)
 {
-	resize(600, 600);
 
 }
 

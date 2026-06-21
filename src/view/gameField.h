@@ -1,7 +1,7 @@
 #ifndef ___GAMEFIELD_H___
 #define ___GAMEFIELD_H___
 
-#include<QWidget	>
+#include<QWidget>
 #include"model/field.h"
 
 class GameField :public QWidget

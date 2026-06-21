@@ -13,7 +13,8 @@ add_executable(${PROJECT_NAME}
 "model/status.cpp"
 "controller/gameController.cpp"
 "model/simpleAI.cpp" 
-"view/gameField.cpp")
+"view/gameField.cpp"
+"view/MainField.cpp")
 
 # Указываем подключенные директории
 target_include_directories(${PROJECT_NAME} PUBLIC 
