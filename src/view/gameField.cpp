@@ -11,23 +11,46 @@ void GameField::drawCell(QPainter& painter, int row, int col, typeCell type)
 	pen.setWidth(3);
 	painter.setPen(pen);
 
-	switch (type)
-	{
-	case typeCell::EMPTY:
-		painter.drawRect(row * W / 3, col * H / 3, W / 3, H / 3);
-		break;
-	case typeCell::X:
-		pen.setColor(Qt::red);
-		pen.setWidth(10);
-		painter.setPen(pen);
-		painter.drawLine(row, col, row * 2, col * 2);
+	painter.drawRect(row * W / 3, col * H / 3, W / 3, H / 3);
+	if (type == typeCell::X)
+		drawX(painter, row, col);
+	if (type == typeCell::O)
+		drawO(painter,row,col);
 
-		break;
-	case typeCell::O:
-		break;
-	default:
-		break;
-	}
+}
+
+void GameField::drawX(QPainter& painter, int row, int col)
+{
+	const int W = size().width(), H = size().height();
+
+	QPen pen;
+	pen.setColor(Qt::red);
+	pen.setWidth(10);
+	painter.setPen(pen);
+	const int o = 30;
+
+
+	QPoint p1((row * W / 3)+o, (col * H / 3)+o);
+	QPoint p2(((row +1) * W / 3)-o, ((col+1) * H / 3)-o);
+	QLine l1(p1,p2);
+
+	QPoint p3(((row) * W / 3)+o, ((col+1) * H / 3)-o);
+	QPoint p4(((row +1) * W / 3)-o, ((col) * H / 3)+o);
+	QLine l2(p3, p4);
+	painter.drawLine(l1);
+	painter.drawLine(l2);
+}
+
+void GameField::drawO(QPainter& painter, int row, int col)
+{
+	const int W = size().width(), H = size().height();
+
+	QPen pen;
+	pen.setColor(Qt::blue);
+	pen.setWidth(10);
+	painter.setPen(pen);
+	QRectF r(row * W / 3, col * H / 3, W / 3, H / 3);
+	painter.drawEllipse(r.center(),W/9,H/9);
 
 }
 
@@ -53,9 +76,10 @@ void GameField::paintEvent(QPaintEvent* event)
 
 	p.setPen(pen);
 
-	for (size_t i = 0; i < 3; i++)
+
+	for (int i = 0; i < 3; i++)
 	{
-		for (size_t j = 0; j < 3; j++)
+		for (int j = 0; j < 3; j++)
 		{
 			typeCell type = field_.getCell(i, j).getType();
 			drawCell(p, j, i, type);

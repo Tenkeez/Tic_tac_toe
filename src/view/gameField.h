@@ -13,6 +13,8 @@ private:
 
 private:
 	void drawCell(QPainter& painter, int row, int col, typeCell type);
+	void drawX(QPainter& painter, int row, int col);
+	void drawO(QPainter& painter, int row, int col);
 public:
 	explicit GameField(const Field& field, QWidget* parent = nullptr);
 
