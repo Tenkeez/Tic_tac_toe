@@ -52,6 +52,8 @@ void GameController::click_Processing(int r, int c)
 		
 	game_status_.changeStatus(nextTurn(game_status_.checkStatus()));
 
+	if (game_status_.checkStatus() == statusOfGame::Status::TURN_PLAYER_O)
+		makeMoveAI();
 }
 
 void GameController::makeMoveAI()
@@ -74,6 +76,19 @@ void GameController::reset()
 void GameController::changeGameMode(bool mode)
 {
 	isVsAI_ = mode;
+}
+
+statusOfGame GameController::checkStatus()
+{
+	return game_status_;
+}
+
+bool GameController::checkGameMode()
+{
+	if (isVsAI_ == false)
+		return false;
+	else
+		return true;
 }
 
 statusOfGame::Status GameController::nextTurn(statusOfGame::Status status)

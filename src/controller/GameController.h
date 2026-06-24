@@ -14,6 +14,8 @@ public:
 	void makeMoveAI();
 	void reset();
 	void changeGameMode(bool mode);
+	statusOfGame checkStatus();
+	bool checkGameMode();
 
 private:
 	Field& field_;
