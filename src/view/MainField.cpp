@@ -5,9 +5,8 @@
 MainField::MainField(QWidget* parent):
 	QWidget(parent)
 {
-	resize(1920, 1080);
+	resize(800, 600);
 	field_ = Field();
-	status_ = statusOfGame();
 
 	controller_ = new GameController(field_);
 	controller_->changeGameMode(true);

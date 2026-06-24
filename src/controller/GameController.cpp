@@ -78,6 +78,11 @@ void GameController::changeGameMode(bool mode)
 	isVsAI_ = mode;
 }
 
+statusOfGame GameController::checkStatus()
+{
+	return game_status_;
+}
+
 bool GameController::checkGameMode()
 {
 	if (isVsAI_ == false)
