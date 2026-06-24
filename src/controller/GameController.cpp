@@ -1,5 +1,6 @@
 #include"gameController.h"
 
+
 GameController::GameController(Field& field):
 	field_(field),
 	logic_(),
@@ -53,16 +54,20 @@ void GameController::click_Processing(int r, int c)
 	game_status_.changeStatus(nextTurn(game_status_.checkStatus()));
 
 	if (game_status_.checkStatus() == statusOfGame::Status::TURN_PLAYER_O)
+	{
 		makeMoveAI();
+
+	}
 }
 
 void GameController::makeMoveAI()
 {
 	if (!isVsAI_)
 		return;
+	std::vector<std::pair<int,int>> freeMoves = logic_.getAvailableMoves(field_);
 
-	int r = ai_.makeMove(logic_.getAvailableMoves(field_)).first;
-	int c = ai_.makeMove(logic_.getAvailableMoves(field_)).second;
+	int r = ai_.makeMove(freeMoves).first;
+	int c = ai_.makeMove(freeMoves).second;
 	click_Processing(r, c);
 
 }
