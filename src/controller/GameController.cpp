@@ -33,28 +33,35 @@ void GameController::click_Processing(int r, int c)
 	{
 		field_.setCell(r, c, typeCell::O);
 	}
+
+	if (changedBoard) changedBoard();
 	
 	typeCell winner = logic_.checkWin(field_);
 	if (winner == typeCell::X)
 	{
 		game_status_.changeStatus(statusOfGame::Status::WIN_X);
+		if (changedStatus) changedStatus(game_status_.checkStatus());
 		return;
 	}
 	else if (winner == typeCell::O)
 	{
 		game_status_.changeStatus(statusOfGame::Status::WIN_O);
+		if (changedStatus) changedStatus(game_status_.checkStatus());
 		return;
 	}
 	if (logic_.isDraw(field_))
 	{
 		game_status_.changeStatus(statusOfGame::Status::DRAW);
+		if (changedStatus) changedStatus(game_status_.checkStatus());
 		return;
 	}
 		
 	game_status_.changeStatus(nextTurn(game_status_.checkStatus()));
+	if (changedStatus) changedStatus(game_status_.checkStatus());
 
-	if (game_status_.checkStatus() == statusOfGame::Status::TURN_PLAYER_O)
+	if (game_status_.checkStatus() == statusOfGame::Status::TURN_PLAYER_O &&isVsAI_)
 	{
+
 		makeMoveAI();
 
 	}
@@ -76,6 +83,9 @@ void GameController::reset()
 {
 	field_.clear();
 	game_status_.changeStatus(statusOfGame::Status::TURN_PLAYER_X);
+
+	if (changedBoard)changedBoard();
+	if (changedStatus) changedStatus(statusOfGame::Status::TURN_PLAYER_X);
 }
 
 void GameController::changeGameMode(bool mode)
@@ -90,10 +100,7 @@ statusOfGame GameController::checkStatus()
 
 bool GameController::checkGameMode()
 {
-	if (isVsAI_ == false)
-		return false;
-	else
-		return true;
+	return isVsAI_;
 }
 
 statusOfGame::Status GameController::nextTurn(statusOfGame::Status status)

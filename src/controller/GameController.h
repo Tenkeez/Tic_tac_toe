@@ -4,6 +4,7 @@
 #include"model/logic.h"
 #include"model/status.h"
 #include"model/simpleAI.h"
+#include<functional>
 
 class GameController
 {
@@ -16,6 +17,11 @@ public:
 	void changeGameMode(bool mode);
 	statusOfGame checkStatus();
 	bool checkGameMode();
+
+public:
+
+	std::function<void()> changedBoard;
+	std::function<void(statusOfGame::Status)> changedStatus;
 
 private:
 	Field& field_;

@@ -9,6 +9,12 @@ MainField::MainField(QWidget* parent):
 	field_ = Field();
 
 	controller_ = new GameController(field_);
+
+	controller_->changedBoard = [this]()
+		{
+			game_field_->update();
+		};
+
 	controller_->changeGameMode(true);
 	game_field_ = new GameField(field_);
 	connect(game_field_, &GameField::cellCliked, this, &MainField::onCellClicked);
@@ -29,13 +35,11 @@ MainField::MainField(QWidget* parent):
 	connect(button_mode, &QPushButton::clicked, this, &MainField::changeModeGame);
 	this->setLayout(mainLayout);
 
-	show();
 }
 
 void MainField::resetGame()
 {
 	controller_->reset();
-	game_field_->update();
 }
 
 void MainField::changeModeGame()
@@ -45,12 +49,10 @@ void MainField::changeModeGame()
 	else
 		controller_->changeGameMode(false);
 	resetGame();
-	game_field_->update();
 }
 
 
 void MainField::onCellClicked(int row, int col)
 {
 	controller_->click_Processing(row, col);
-	game_field_->update();
 }
